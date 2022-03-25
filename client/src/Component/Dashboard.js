@@ -6,7 +6,17 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import sendArrow from "../Assets/arrow.PNG"
+import sendArrow from "../Assets/arrow.PNG";
+import boldIcon from "../Assets/bold.PNG";
+import codeIcon from "../Assets/code.PNG";
+import emojiIcon from "../Assets/emoji.PNG";
+import italicIcon from "../Assets/italic.PNG";
+import justifyIcon from "../Assets/justify.PNG";
+import linkIcon from "../Assets/link.PNG";
+import orderedlistIcon from "../Assets/orderedlist.PNG";
+import strikethroughIcon from "../Assets/strikethrough.PNG";
+import unorderedlistIcon from "../Assets/unorderdlist.PNG";
+import addIcon from "../Assets/addIcon.PNG"
 
 function Dashboard() {
   const { name, roomId } = useParams();
@@ -76,6 +86,23 @@ function Dashboard() {
                     component: undefined,
                     dropdownClassName: undefined,
                     options: ["bold", "italic", "strikethrough", "monospace"],
+                    bold: { icon: boldIcon, className: undefined },
+                    italic: { icon: italicIcon, className: undefined },
+                    strikethrough: {
+                      icon: strikethroughIcon,
+                      className: undefined,
+                    },
+                    monospace: { icon: codeIcon, className: undefined },
+                  },
+                  link: {
+                    options: ['link'],
+                    link: { icon: linkIcon, className: undefined },
+                  },
+                  emoji: { 
+                    icon : emojiIcon
+                  },
+                  image : {
+                    icon : addIcon
                   },
                   list: {
                     inDropdown: false,
@@ -83,6 +110,15 @@ function Dashboard() {
                     component: undefined,
                     dropdownClassName: undefined,
                     options: ["ordered", "unordered", "indent"],
+                    ordered: { icon: orderedlistIcon, className: undefined },
+                    unordered: {
+                      icon: unorderedlistIcon,
+                      className: undefined,
+                    },
+                    indent: {
+                      icon: justifyIcon,
+                      className: undefined,
+                    },
                   },
                 }}
                 mention={{
@@ -104,7 +140,9 @@ function Dashboard() {
                   ],
                 }}
               />
-              <button onClick={sendMessage}><img src={sendArrow} alt="send-arrow" /></button>
+              <button className='send' onClick={sendMessage}>
+                <img src={sendArrow} alt='send-arrow' />
+              </button>
             </div>
           </div>
         </div>

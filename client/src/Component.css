@@ -1,6 +1,6 @@
 :root {
   --light-blue: #00aaff;
-  --light-gray: #0d1117;
+  --light-gray: #222529;
 }
 
 .on-boarding {
@@ -87,7 +87,7 @@
   background-color: var(--light-gray);
   width: 80%;
   height: 80%;
-  border: solid 1px white;
+  border: solid 1px #c9d1d9;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -95,7 +95,7 @@
 
 .dashboard .chat-display .sidebar {
   width: 20%;
-  border: solid 1px white;
+  border: solid 1px #c9d1d9;
 }
 
 .dashboard .chat-display .chatroom {
@@ -111,9 +111,16 @@
 
 .dashboard .chat-display .chatroom .messages {
   height: 80%;
-  border: solid 1px white;
+  border: solid 1px #c9d1d9;
   overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
   padding-inline: 10px;
+}
+
+.dashboard .chat-display .chatroom .messages::-webkit-scrollbar {
+  display: none;
 }
 
 .dashboard .chat-display .chatroom .messages .message {
@@ -144,7 +151,7 @@
 }
 
 .dashboard .chat-display .chatroom .editor-div-chat {
-  height: 30%;
+  height: 50%;
   padding: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -154,9 +161,17 @@
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 20px;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
 }
 
-.dashboard .chat-display .chatroom .editor-div-chat button {
+.dashboard .chat-display .chatroom .editor-div-chat::-webkit-scrollbar {
+  display: none;
+}
+
+.dashboard .chat-display .chatroom .editor-div-chat button.send {
   cursor: pointer;
   background: green;
   outline: none;

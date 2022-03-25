@@ -1,6 +1,6 @@
 :root {
   --light-blue: #00aaff;
-  --light-gray: #0d1117;
+  --light-gray: #222529;
 }
 
 .on-boarding {
@@ -61,11 +61,11 @@
     background-color: var(--light-gray);
     width: 80%;
     height: 80%;
-    border: solid 1px white;
+    border: solid 1px rgb(201, 209, 217);
     display: flex;
     .sidebar {
       width: 20%;
-      border: solid 1px white;
+      border: solid 1px rgb(201, 209, 217);
     }
     .chatroom {
       width: 80%;
@@ -73,8 +73,13 @@
       flex-direction: column;
       .messages {
         height: 80%;
-        border: solid 1px white;
+        border: solid 1px rgb(201, 209, 217);
         overflow-y: scroll;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
         padding-inline: 10px;
         .message {
           display: flex;
@@ -93,12 +98,18 @@
         }
       }
       .editor-div-chat {
-        height: 30%;
+        height: 50%;
         padding: 15px;
         display: flex;
         flex-direction: column;
         gap: 20px;
-        button {
+        overflow-y: scroll;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        button.send {
           cursor: pointer;
           background: green;
           outline: none;
