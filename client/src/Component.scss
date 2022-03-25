@@ -1,5 +1,6 @@
 :root {
   --light-blue: #00aaff;
+  --light-gray: #0d1117;
 }
 
 .on-boarding {
@@ -51,17 +52,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: black 1px;
+  border: white 1px;
   width: 100vw;
   height: 100vh;
+  background-color: var(--light-gray);
+  color: rgb(201, 209, 217);
   .chat-display {
-    width: 60%;
-    height: 60%;
-    border: solid 1px var(--light-blue);
+    background-color: var(--light-gray);
+    width: 80%;
+    height: 80%;
+    border: solid 1px white;
     display: flex;
     .sidebar {
       width: 20%;
-      border: solid 1px var(--light-blue);
+      border: solid 1px white;
     }
     .chatroom {
       width: 80%;
@@ -69,25 +73,59 @@
       flex-direction: column;
       .messages {
         height: 80%;
-        border: solid 1px var(--light-blue);
+        border: solid 1px white;
         overflow-y: scroll;
+        padding-inline: 10px;
         .message {
           display: flex;
           flex-direction: column;
-          background-color: var(--light-blue);
-          color: white;
-          font-size: 22px;
+          font-size: 18px;
           .user {
             display: flex;
           }
           .message-details {
             display: flex;
-            .message {
-              flex: 1;
+            align-items: center;
+            gap: 10px;
+            .message-text {
             }
           }
         }
       }
+      .editor-div-chat {
+        height: 30%;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        button {
+          cursor: pointer;
+          background: green;
+          outline: none;
+          border: none;
+          border-radius: 5px;
+          padding: 5px 0px 0px 5px;
+          width: 77px;
+          align-self: flex-end;
+          text-align: left;
+        }
+      }
     }
   }
+}
+
+.demo-wrapper {
+  height: 80%;
+  border: solid 1px white !important;
+  border-radius: 10px;
+  padding: 10px;
+}
+.demo-editor {
+  height: 50% !important;
+  flex: 1;
+}
+.rdw-editor-toolbar,
+.rdw-option-wrapper {
+  background-color: var(--light-gray) !important;
+  border: black !important;
 }

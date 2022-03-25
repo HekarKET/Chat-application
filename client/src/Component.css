@@ -1,5 +1,6 @@
 :root {
   --light-blue: #00aaff;
+  --light-gray: #0d1117;
 }
 
 .on-boarding {
@@ -75,15 +76,18 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border: black 1px;
+  border: white 1px;
   width: 100vw;
   height: 100vh;
+  background-color: var(--light-gray);
+  color: #c9d1d9;
 }
 
 .dashboard .chat-display {
-  width: 60%;
-  height: 60%;
-  border: solid 1px var(--light-blue);
+  background-color: var(--light-gray);
+  width: 80%;
+  height: 80%;
+  border: solid 1px white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -91,7 +95,7 @@
 
 .dashboard .chat-display .sidebar {
   width: 20%;
-  border: solid 1px var(--light-blue);
+  border: solid 1px white;
 }
 
 .dashboard .chat-display .chatroom {
@@ -107,8 +111,9 @@
 
 .dashboard .chat-display .chatroom .messages {
   height: 80%;
-  border: solid 1px var(--light-blue);
+  border: solid 1px white;
   overflow-y: scroll;
+  padding-inline: 10px;
 }
 
 .dashboard .chat-display .chatroom .messages .message {
@@ -119,9 +124,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: var(--light-blue);
-  color: white;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 .dashboard .chat-display .chatroom .messages .message .user {
@@ -134,11 +137,55 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
 }
 
-.dashboard .chat-display .chatroom .messages .message .message-details .message {
+.dashboard .chat-display .chatroom .editor-div-chat {
+  height: 30%;
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard .chat-display .chatroom .editor-div-chat button {
+  cursor: pointer;
+  background: green;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 0px 0px 5px;
+  width: 77px;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  text-align: left;
+}
+
+.demo-wrapper {
+  height: 80%;
+  border: solid 1px white !important;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.demo-editor {
+  height: 50% !important;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+
+.rdw-editor-toolbar,
+.rdw-option-wrapper {
+  background-color: var(--light-gray) !important;
+  border: black !important;
 }
 /*# sourceMappingURL=Component.css.map */
