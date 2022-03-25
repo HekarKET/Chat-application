@@ -1,8 +1,5 @@
 # Chat-application
 
-
-## Some Features
-
 ## Getting Started
 
 <p>Make sure you have <a href="https://nodejs.org">Node.js</a> installed</p>
