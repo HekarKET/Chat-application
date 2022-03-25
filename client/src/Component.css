@@ -1,0 +1,67 @@
+:root {
+  --light-blue: #00aaff;
+}
+
+.on-boarding {
+  height: 100vh;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 25px;
+}
+
+.on-boarding > * {
+  width: 30%;
+  font-size: 20px;
+  margin-inline: auto;
+  padding: 25px;
+  text-align: center;
+  border-radius: 50px;
+  outline: none;
+}
+
+.on-boarding .option {
+  background-color: var(--light-blue);
+  color: white;
+}
+
+.on-boarding .rooms {
+  width: 100%;
+  gap: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.on-boarding .rooms input,
+.on-boarding .rooms button {
+  width: 30%;
+  font-size: 20px;
+  margin-inline: auto;
+  padding: 25px;
+  text-align: center;
+  border-radius: 50px;
+  outline: none;
+}
+
+.on-boarding .rooms button {
+  background-color: var(--light-blue);
+  color: white;
+  border: none;
+}
+/*# sourceMappingURL=Component.css.map */
