@@ -33,7 +33,7 @@
    ```
 2. Change directory
    ```sh
-   cd Server
+   cd server
    ```
 3. Install NPM packages (dependencies)
    ```sh
