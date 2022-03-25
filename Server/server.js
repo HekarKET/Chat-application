@@ -3,7 +3,12 @@ const express = require("express");
 const socketio = require("socket.io");
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
+const io = socketio(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
 const users = [];
 
@@ -27,20 +32,21 @@ function userLeave(id) {
 io.on("connection", (socket) => {
   socket.on("joinRoom", ({ username, room }) => {
     userJoin(socket.id, username, room);
+    socket.join(room);
   });
 
-  socket.on("chatMessage", (msg) => {
+  socket.on("chatMessage", (message) => {
     const user = getCurrentUser(socket.id);
-    io.to(user.room).emit("message", formatMessage(user.username, msg));
+    // console.log(users);
+    socket.broadcast
+      .to(user.room)
+      .emit("message", { user: user.username, message, date: new Date() });
   });
 
   socket.on("disconnect", () => {
     const user = userLeave(socket.id);
     if (user) {
-      io.to(user.room).emit(
-        "message",
-        formatMessage(botName, `${user.username} has left the chat`)
-      );
+      io.to(user.room).emit("disconnected", { user: user.username });
     }
   });
 });
