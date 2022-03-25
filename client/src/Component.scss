@@ -85,6 +85,10 @@
           display: flex;
           flex-direction: column;
           font-size: 18px;
+        border: solid 1px rgb(201, 209, 217);
+border-radius: 15px;
+width: 100%;
+padding: 10px;
           .user {
             display: flex;
           }
@@ -136,7 +140,18 @@
   flex: 1;
 }
 .rdw-editor-toolbar,
-.rdw-option-wrapper {
+.rdw-option-wrapper  {
   background-color: var(--light-gray) !important;
   border: black !important;
+
+}
+.rdw-suggestion-dropdown  {
+  background-color: #474747 !important;
+  border:  white !important;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

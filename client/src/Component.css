@@ -132,6 +132,10 @@
       -ms-flex-direction: column;
           flex-direction: column;
   font-size: 18px;
+  border: solid 1px #c9d1d9;
+  border-radius: 15px;
+  width: 100%;
+  padding: 10px;
 }
 
 .dashboard .chat-display .chatroom .messages .message .user {
@@ -202,5 +206,18 @@
 .rdw-option-wrapper {
   background-color: var(--light-gray) !important;
   border: black !important;
+}
+
+.rdw-suggestion-dropdown {
+  background-color: #474747 !important;
+  border: white !important;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+}
+
+.rdw-suggestion-dropdown::-webkit-scrollbar {
+  display: none;
 }
 /*# sourceMappingURL=Component.css.map */

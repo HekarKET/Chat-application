@@ -29,10 +29,16 @@ function userLeave(id) {
   }
 }
 
+
+function getRoomUsers(room) {
+  return users.filter(user => user.room === room);
+}
+
 io.on("connection", (socket) => {
   socket.on("joinRoom", ({ username, room }) => {
-    userJoin(socket.id, username, room);
+    let user = userJoin(socket.id, username, room);
     socket.join(room);
+    io.to(user.room).emit("roomUsers", getRoomUsers(user.room));
   });
 
   socket.on("chatMessage", (message) => {

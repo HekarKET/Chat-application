@@ -16,7 +16,7 @@ import linkIcon from "../Assets/link.PNG";
 import orderedlistIcon from "../Assets/orderedlist.PNG";
 import strikethroughIcon from "../Assets/strikethrough.PNG";
 import unorderedlistIcon from "../Assets/unorderdlist.PNG";
-import addIcon from "../Assets/addIcon.PNG"
+import addIcon from "../Assets/addIcon.PNG";
 
 function Dashboard() {
   const { name, roomId } = useParams();
@@ -24,6 +24,7 @@ function Dashboard() {
   const [socket, setsocket] = useState(null);
   const [messages, setmessages] = useState([]);
   const [editorState, seteditorState] = useState("");
+  const [users, setusers] = useState([]);
 
   useEffect(() => {
     let socket = socketio(`http://${window.location.hostname}:4000`);
@@ -34,11 +35,22 @@ function Dashboard() {
   useEffect(() => {
     if (socket) {
       const messageListener = (message) => {
-        console.log(messages);
+        // console.log(messages);
         setmessages((prev) => [...prev, message]);
+      };
+      const userListener = (user) => {
+        // console.log(messages);
+        let newUser = user.map((item) => ({
+          text: item.username,
+          value: item.username,
+          url: item.username,
+        }));
+        console.log(newUser);
+        setusers((prev) => [...prev, ...newUser]);
       };
 
       socket.on("message", messageListener);
+      socket.on("roomUsers", userListener);
     }
   }, [socket]);
 
@@ -95,14 +107,14 @@ function Dashboard() {
                     monospace: { icon: codeIcon, className: undefined },
                   },
                   link: {
-                    options: ['link'],
+                    options: ["link"],
                     link: { icon: linkIcon, className: undefined },
                   },
-                  emoji: { 
-                    icon : emojiIcon
+                  emoji: {
+                    icon: emojiIcon,
                   },
-                  image : {
-                    icon : addIcon
+                  image: {
+                    icon: addIcon,
                   },
                   list: {
                     inDropdown: false,
@@ -124,20 +136,7 @@ function Dashboard() {
                 mention={{
                   separator: " ",
                   trigger: "@",
-                  suggestions: [
-                    { text: "APPLE", value: "apple", url: "apple" },
-                    { text: "BANANA", value: "banana", url: "banana" },
-                    { text: "CHERRY", value: "cherry", url: "cherry" },
-                    { text: "DURIAN", value: "durian", url: "durian" },
-                    { text: "EGGFRUIT", value: "eggfruit", url: "eggfruit" },
-                    { text: "FIG", value: "fig", url: "fig" },
-                    {
-                      text: "GRAPEFRUIT",
-                      value: "grapefruit",
-                      url: "grapefruit",
-                    },
-                    { text: "HONEYDEW", value: "honeydew", url: "honeydew" },
-                  ],
+                  suggestions: [...users],
                 }}
               />
               <button className='send' onClick={sendMessage}>
