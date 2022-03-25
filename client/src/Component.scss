@@ -75,7 +75,7 @@
         height: 80%;
         border: solid 1px rgb(201, 209, 217);
         overflow-y: scroll;
-        -ms-overflow-style: none;  /* IE and Edge */
+        -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none;
         &::-webkit-scrollbar {
           display: none;
@@ -85,10 +85,10 @@
           display: flex;
           flex-direction: column;
           font-size: 18px;
-        border: solid 1px rgb(201, 209, 217);
-border-radius: 15px;
-width: 100%;
-padding: 10px;
+          border: solid 1px rgb(201, 209, 217);
+          border-radius: 15px;
+          width: 100%;
+          padding: 10px;
           .user {
             display: flex;
           }
@@ -108,7 +108,7 @@ padding: 10px;
         flex-direction: column;
         gap: 20px;
         overflow-y: scroll;
-        -ms-overflow-style: none;  /* IE and Edge */
+        -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none;
         &::-webkit-scrollbar {
           display: none;
@@ -140,16 +140,15 @@ padding: 10px;
   flex: 1;
 }
 .rdw-editor-toolbar,
-.rdw-option-wrapper  {
+.rdw-option-wrapper {
   background-color: var(--light-gray) !important;
   border: black !important;
-
 }
-.rdw-suggestion-dropdown  {
+.rdw-suggestion-dropdown {
   background-color: #474747 !important;
-  border:  white !important;
+  border: white !important;
   overflow-y: scroll;
-  -ms-overflow-style: none;  /* IE and Edge */
+  -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;

@@ -43,9 +43,11 @@ io.on("connection", (socket) => {
   socket.on("chatMessage", (message) => {
     const user = getCurrentUser(socket.id);
     // console.log(users);
-    socket.broadcast
-      .to(user.room)
-      .emit("message", { user: user.username, message, date: new Date() });
+    io.to(user.room).emit("message", {
+      user: user.username,
+      message,
+      date: new Date(),
+    });
   });
 
   socket.on("disconnect", () => {
