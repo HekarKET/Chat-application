@@ -112,9 +112,11 @@ function Dashboard() {
                   },
                   emoji: {
                     icon: emojiIcon,
+                    className: 'bottom-left',
                   },
                   image: {
                     icon: addIcon,
+                    className: 'bottom-left',
                   },
                   list: {
                     inDropdown: false,

@@ -3,6 +3,16 @@
   --light-gray: #222529;
 }
 
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .on-boarding {
   height: 100vh;
   width: 100vw;
@@ -86,7 +96,7 @@
 .dashboard .chat-display {
   background-color: var(--light-gray);
   width: 80%;
-  height: 80%;
+  height: 90%;
   border: solid 1px #c9d1d9;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -94,12 +104,13 @@
 }
 
 .dashboard .chat-display .sidebar {
+  display: none;
   width: 20%;
   border: solid 1px #c9d1d9;
 }
 
 .dashboard .chat-display .chatroom {
-  width: 80%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -110,7 +121,7 @@
 }
 
 .dashboard .chat-display .chatroom .messages {
-  height: 80%;
+  height: 100%;
   border: solid 1px #c9d1d9;
   overflow-y: scroll;
   -ms-overflow-style: none;
@@ -155,6 +166,7 @@
 }
 
 .dashboard .chat-display .chatroom .editor-div-chat {
+  position: relative;
   height: 50%;
   padding: 15px;
   display: -webkit-box;
@@ -176,6 +188,7 @@
 }
 
 .dashboard .chat-display .chatroom .editor-div-chat button.send {
+  position: absolute;
   cursor: pointer;
   background: green;
   outline: none;
@@ -186,6 +199,9 @@
   -ms-flex-item-align: end;
       align-self: flex-end;
   text-align: left;
+  top: 60%;
+  -webkit-transform: translate(-10px, 65%);
+          transform: translate(-10px, 65%);
 }
 
 .demo-wrapper {
@@ -193,6 +209,15 @@
   border: solid 1px white !important;
   border-radius: 10px;
   padding: 10px;
+  position: relative;
+}
+
+.demo-wrapper .bottom-left {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  -webkit-transform: translate(-825%, 350%);
+          transform: translate(-825%, 350%);
 }
 
 .demo-editor {
@@ -219,5 +244,15 @@
 
 .rdw-suggestion-dropdown::-webkit-scrollbar {
   display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .demo-wrapper .bottom-left {
+    position: relative;
+    top: 0%;
+    left: 0%;
+    -webkit-transform: translate(0%, 0%);
+            transform: translate(0%, 0%);
+  }
 }
 /*# sourceMappingURL=Component.css.map */
