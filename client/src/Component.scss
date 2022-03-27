@@ -67,8 +67,10 @@ body {
   background-color: var(--light-gray);
   color: rgb(201, 209, 217);
 
-  code {
+  code, .code-block {
     background-color: #f1f1f1;;
+    color: var(--light-gray);
+    font-size: 16px;
   }
   
   .chat-display {

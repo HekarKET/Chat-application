@@ -93,8 +93,10 @@ body::-webkit-scrollbar {
   color: #c9d1d9;
 }
 
-.dashboard code {
+.dashboard code, .dashboard .code-block {
   background-color: #f1f1f1;
+  color: var(--light-gray);
+  font-size: 16px;
 }
 
 .dashboard .chat-display {

@@ -105,7 +105,7 @@ function Dashboard() {
                       icon: strikethroughIcon,
                       className: undefined,
                     },
-                    monospace: { icon: codeIcon, className: undefined },
+                    monospace: { icon: codeIcon, className: "code-block" },
                   },
                   link: {
                     options: ["link"],
