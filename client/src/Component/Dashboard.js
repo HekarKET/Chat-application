@@ -45,7 +45,7 @@ function Dashboard() {
           value: item.username,
           url: item.username,
         }));
-        console.log(newUser);
+        // console.log(newUser);
         setusers((prev) => [...prev, ...newUser]);
       };
 
@@ -56,6 +56,7 @@ function Dashboard() {
 
   const sendMessage = () => {
     let data = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+    console.log(data);
     socket.emit("chatMessage", data);
   };
 
@@ -91,7 +92,7 @@ function Dashboard() {
                 wrapperClassName='demo-wrapper'
                 editorClassName='demo-editor'
                 toolbar={{
-                  options: ["inline", "link", "list", "emoji", "image"],
+                  options: ["inline", "link", "list", "emoji", "image", "embedded"],
                   inline: {
                     inDropdown: false,
                     className: undefined,

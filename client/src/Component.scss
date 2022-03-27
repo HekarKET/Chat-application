@@ -66,6 +66,10 @@ body {
   height: 100vh;
   background-color: var(--light-gray);
   color: rgb(201, 209, 217);
+
+  code {
+    background-color: #f1f1f1;;
+  }
   
   .chat-display {
     background-color: var(--light-gray);
