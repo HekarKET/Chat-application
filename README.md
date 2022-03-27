@@ -1,8 +1,4 @@
-# doctor-note
-
-
-
-## Some Features
+# Chat-application
 
 ## Getting Started
 
@@ -43,3 +39,9 @@
    ```sh
    npm start
    ```
+
+## Future Work
+1. Link preview 
+2. Text editor formatting
+3. File upload
+
