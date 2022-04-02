@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import socketio from "socket.io-client";
 import { Editor } from "react-draft-wysiwyg";
@@ -25,11 +25,26 @@ function Dashboard() {
   const [messages, setmessages] = useState([]);
   const [editorState, seteditorState] = useState("");
   const [users, setusers] = useState([]);
+  const [typingMessage, settypingMessage] = useState([]);
+  const [run, setrun] = useState(false);
 
   useEffect(() => {
     let socket = socketio(`http://${window.location.hostname}:4000`);
     socket.emit("joinRoom", { username: name, room: roomId });
     setsocket(socket);
+    setrun(true);
+  }, []);
+
+  const debouncer = useCallback(function (fn) {
+    let timer;
+    return function () {
+      const context = this;
+      const args = arguments;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        fn.apply(context, args);
+      }, 2000);
+    };
   }, []);
 
   useEffect(() => {
@@ -38,6 +53,20 @@ function Dashboard() {
         // console.log(messages);
         setmessages((prev) => [...prev, message]);
       };
+      const typingByUserListener = debouncer((message) => {
+        // console.log(message);
+        let typingMessagsTemp = [...typingMessage];
+        settypingMessage((prev) => [
+          ...prev,
+          { ...message, id: Math.random() },
+        ]);
+
+        setTimeout(() => settypingMessage((prev) => typingMessagsTemp), 2000);
+
+        // const removeMessage = ()=>{
+        //   typingMessage
+        // }
+      });
       const userListener = (user) => {
         // console.log(messages);
         let newUser = user.map((item) => ({
@@ -50,6 +79,7 @@ function Dashboard() {
       };
 
       socket.on("message", messageListener);
+      socket.on("typingByUser", debouncer(typingByUserListener));
       socket.on("roomUsers", userListener);
     }
   }, [socket]);
@@ -59,6 +89,30 @@ function Dashboard() {
     console.log(data);
     socket.emit("chatMessage", data);
   };
+
+  var typing = false;
+  var timeout = undefined;
+
+  function timeoutFunction() {
+    typing = false;
+    socket.emit("typing");
+  }
+
+  function handleChange() {
+    if (typing == false) {
+      typing = true;
+      socket.emit(typingMessage);
+      timeout = setTimeout(timeoutFunction, 2000);
+    } else {
+      clearTimeout(timeout);
+      timeout = setTimeout(timeoutFunction, 2000);
+    }
+  }
+
+  // const handleChange = (e) => {
+  //   console.log(e);
+  //   // socket.emit("typing");
+  // };
 
   return (
     <>
@@ -83,16 +137,43 @@ function Dashboard() {
                   </div>
                 </div>
               ))}
+              {typingMessage.map((item, idx) => (
+                //Since messages dont have id
+                <div className='message' key={idx}>
+                  <div className='user'>{item.user}</div>
+                  <div className='message-details'>
+                    <div className='message-text'>
+                      {
+                        <div
+                          dangerouslySetInnerHTML={{ __html: item.message }}
+                        />
+                      }
+                    </div>
+                    <div className='date'>{moment(item.date).fromNow()}</div>
+                  </div>
+                </div>
+              ))}
             </div>
             <div className='editor-div-chat'>
               <Editor
                 editorState={editorState}
-                onEditorStateChange={(e) => seteditorState(e)}
+                // onChange={handleChange}
+                onEditorStateChange={(e) => {
+                  seteditorState(e);
+                  handleChange(e);
+                }}
                 placeholder='Chat comes here'
                 wrapperClassName='demo-wrapper'
                 editorClassName='demo-editor'
                 toolbar={{
-                  options: ["inline", "link", "list", "emoji", "image", "embedded"],
+                  options: [
+                    "inline",
+                    "link",
+                    "list",
+                    "emoji",
+                    "image",
+                    "embedded",
+                  ],
                   inline: {
                     inDropdown: false,
                     className: undefined,
@@ -113,11 +194,11 @@ function Dashboard() {
                   },
                   emoji: {
                     icon: emojiIcon,
-                    className: 'bottom-left',
+                    className: "bottom-left",
                   },
                   image: {
                     icon: addIcon,
-                    className: 'bottom-left',
+                    className: "bottom-left",
                   },
                   list: {
                     inDropdown: false,

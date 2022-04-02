@@ -50,6 +50,16 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on("typing", () => {
+    const user = getCurrentUser(socket.id);
+    // console.log(user);
+    socket.broadcast.to(user.room).emit("typingByUser", {
+      user: user.username,
+      message: "typing...",
+      date: new Date(),
+    });
+  });
+
   socket.on("disconnect", () => {
     const user = userLeave(socket.id);
     if (user) {
